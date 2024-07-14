@@ -114,6 +114,18 @@ const updateUser = async (id, user, token) => {
     }
 }
 
+const findUsers = async (filters) => {
+    try {
+        const response = await axios.get('http://localhost:3001/api/v1/users/findUsers', {
+            params: filters
+        });
+        return response.data;
+    } catch (e) {
+        console.error(e);
+        return [];
+    }
+}
+
 export default {
     handleLogin,
     getUsers,
@@ -121,4 +133,5 @@ export default {
     logOut,
     registerUser,
     updateUser,
+    findUsers,
 };

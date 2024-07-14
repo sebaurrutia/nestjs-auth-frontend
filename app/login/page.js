@@ -64,6 +64,7 @@ export default function Login(){
                     <div className={"login-box-child"}>
                         <Button onClick={handleRegister}>Registrar</Button>
                     </div>
+
                 </CardContent>
             </Card>
         </Container>
