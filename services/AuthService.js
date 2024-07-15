@@ -129,13 +129,10 @@ const findUsers = async (filters) => {
     }
 }
 
-const bulkCreateUsers = async (users) => {
+const bulkCreate = async (users) => {
+    console.log("qaqwqw", users);
     try {
-        const response = await axios.post('http://localhost:3001/api/v1/users/bulkCreateUsers', users, {
-            headers: {
-                token: localStorage.getItem('token'),
-            },
-        });
+        const response = await axios.post('http://localhost:3001/api/v1/users/bulkCreate',{users});
         return response.data;
     } catch (e) {
         console.error(e);
@@ -151,7 +148,7 @@ export default {
     registerUser,
     updateUser,
     findUsers,
-    bulkCreateUsers,
+    bulkCreate,
 };
 
 

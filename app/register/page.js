@@ -11,18 +11,18 @@ const Register = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [passwordSecond, setPasswordSecond] = useState("");
+    const [password_second, setPasswordSecond] = useState("");
     const [cellphone, setCellphone] = useState("");
     const [message, setMessage] = useState("");
     const [openSnack, setOpenSnack] = useState(false);
 
     const handleAddUser = () => {
-        if (password !== passwordSecond) {
+        if (password !== password_second) {
             setMessage("Las contraseñas no coinciden");
             setOpenSnack(true);
             return;
         }
-        const newUser = { name, email, password, cellphone };
+        const newUser = { name, email, password,password_second,cellphone };
         setUsers([...users, newUser]);
         setName("");
         setEmail("");
@@ -33,8 +33,8 @@ const Register = () => {
 
     const handleRegisterAll = async () => {
         try {
-            const response = await AuthService.bulkCreateUsers(users);
-            setMessage(response.message); // Ajusta según la respuesta del backend
+            const response = await AuthService.bulkCreate(users);
+            setMessage(response.message);
         } catch (error) {
             setMessage("Error al conectar con el servidor");
         } finally {
@@ -90,7 +90,7 @@ const Register = () => {
                             type="password"
                             required
                             placeholder="Confirme la contraseña"
-                            value={passwordSecond}
+                            value={password_second}
                             onChange={(e) => setPasswordSecond(e.target.value)}
                         />
                     </div>
