@@ -117,7 +117,10 @@ const updateUser = async (id, user, token) => {
 const findUsers = async (filters) => {
     try {
         const response = await axios.get('http://localhost:3001/api/v1/users/findUsers', {
-            params: filters
+            params: filters,
+            headers: {
+                token: localStorage.getItem('token'),
+            }
         });
         return response.data;
     } catch (e) {
@@ -125,6 +128,20 @@ const findUsers = async (filters) => {
         return [];
     }
 }
+
+const bulkCreateUsers = async (users) => {
+    try {
+        const response = await axios.post('http://localhost:3001/api/v1/users/bulkCreateUsers', users, {
+            headers: {
+                token: localStorage.getItem('token'),
+            },
+        });
+        return response.data;
+    } catch (e) {
+        console.error(e);
+        return { message: 'Error al crear usuarios' };
+    }
+};
 
 export default {
     handleLogin,
@@ -134,4 +151,10 @@ export default {
     registerUser,
     updateUser,
     findUsers,
+    bulkCreateUsers,
 };
+
+
+
+
+
