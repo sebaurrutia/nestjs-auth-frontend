@@ -32,8 +32,9 @@ export default function Users() {
     };
 
     const filterUsersByDate = (data) => {
-        // Filtrar usuarios basados en la fecha de creación
+        
         const filteredUsers = data.filter(user => {
+            
             const createdAt = new Date(user.createdAt);
             const loginBefore = filters.login_before_date ? new Date(filters.login_before_date) : null;
             const loginAfter = filters.login_after_date ? new Date(filters.login_after_date) : null;
@@ -47,7 +48,6 @@ export default function Users() {
             return true;
         });
 
-        // Aplicar filtro de estado activo/inactivo
         setUsers(filteredUsers.filter(user => user.status === filters.active));
     };
 
